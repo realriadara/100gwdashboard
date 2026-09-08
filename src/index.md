@@ -239,23 +239,14 @@ const resultsTable = Inputs.table(finalFilteredData, {
     ARTICLE_LINK: "Tautan"
   },
   format: {
+    // NEW: Force the title text to wrap and limit its width
+    ARTICLE_TITLE: (title) => htl.html`<div style="white-space: normal; min-width: 300px; max-width: 500px; line-height: 1.4;">${title}</div>`,
+    
     ARTICLE_LINK: (link) => htl.html`<a href="${link}" target="_blank" rel="noopener noreferrer">Read Article</a>`
   },
   rows: rowCount,
   layout: "auto"
 });
-
-display(htl.html`
-<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 16px; width: 100%;">
-  <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
-    ${resultsTable}
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 8px; flex: 0 0 auto;">
-    ${Inputs.button("Download CSV", { reduce: () => exportCSV(finalFilteredData, "Hasil_Pencarian_Artikel") })}
-    ${Inputs.button("Download JSON", { reduce: () => exportJSON(finalFilteredData, "Hasil_Pencarian_Artikel") })}
-  </div>
-</div>
-`);
 ```
 
 ```js
