@@ -5,7 +5,7 @@ toc: false
 
 <style>
   main {
-    max-width: 1400px !important;
+    max-width: 1600px !important;
   }
 </style>
 
@@ -245,13 +245,10 @@ const resultsTable = Inputs.table(finalFilteredData, {
   layout: "auto" // Removed maxWidth
 });
 
-// CRITICAL FIX: Force the table wrapper and the internal <table> to take 100% width
-resultsTable.style.width = "100%";
-resultsTable.style.maxWidth = "100%";
-const innerTable = resultsTable.querySelector("table");
-if (innerTable) {
-  innerTable.style.width = "100%";
-}
+display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;">
+  <div style="flex-grow: 1; min-width: 0;">
+    ${dailyTable}
+  </div>
 
 <div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 10px; width: 100%;">
   <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
