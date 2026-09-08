@@ -231,22 +231,38 @@ const resultsTable = Inputs.table(finalFilteredData, {
   format: {
     ARTICLE_LINK: (link) => htl.html`<a href="${link}" target="_blank" rel="noopener noreferrer">Read Article</a>`
   },
-  rows: rowCount, 
-  width: "100%",           // ADDED: Force the table to expand
-  layout: "auto"           // Removed maxWidth: "200%" as it causes flexbox issues
+  rows: rowCount,
+  layout: "auto" // Removed maxWidth
 });
 
-// Display side-by-side
-// ADDED: width: 100% to the parent flex container
-display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px; width: 100%;">
-  <div style="flex-grow: 1; min-width: 0; width: 100%;"> 
+// CRITICAL FIX: Force the table wrapper and the internal <table> to take 100% width
+resultsTable.style.width = "100%";
+resultsTable.style.maxWidth = "100%";
+const innerTable = resultsTable.querySelector("table");
+if (innerTable) {
+  innerTable.style.width = "100%";
+}
+
+// Display side-by-side with injected CSS to prevent text truncation
+display(htl.html`
+<style>
+  /* Force the first column (Judul) to wrap text instead of truncating */
+  .wide-table-container table td:nth-child(1) {
+    min-width: 400px;
+    white-space: normal !important; 
+  }
+</style>
+
+<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 20px; width: 100%;">
+  <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
     ${resultsTable}
   </div>
-  <div style="display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;">
+  <div style="display: flex; flex-direction: column; gap: 8px; flex: 0 0 auto;">
     ${Inputs.button("Download CSV", { reduce: () => exportCSV(finalFilteredData, "Hasil_Pencarian_Artikel") })}
     ${Inputs.button("Download JSON", { reduce: () => exportJSON(finalFilteredData, "Hasil_Pencarian_Artikel") })}
   </div>
-</div>`);
+</div>
+`);
 ```
 
 ```js
