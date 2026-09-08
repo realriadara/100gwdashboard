@@ -73,7 +73,7 @@ const { selectedTag, filterTarget } = filterState;
 ```
 
 ```js
-// NEW: COMBINED FILTER INPUTS WITH DYNAMIC COUNTS
+// COMBINED FILTER INPUTS WITH DYNAMIC COUNTS
 const filterState = view((function(prev) {
   // Preserve previous selections so they don't reset when using the search bar
   let currentTag = prev ? prev.value.selectedTag : "Semua";
@@ -91,7 +91,7 @@ const filterState = view((function(prev) {
   const targets = ["Judul", "Konten", "Judul + Konten"];
   
   // Build the layout skeleton
-container.style.maxWidth = "150%"; 
+container.style.maxWidth = "100%"; 
 container.style.boxSizing = "border-box";
 
 container.innerHTML = `
@@ -242,7 +242,7 @@ const resultsTable = Inputs.table(finalFilteredData, {
     ARTICLE_LINK: (link) => htl.html`<a href="${link}" target="_blank" rel="noopener noreferrer">Read Article</a>`
   },
   rows: rowCount,
-  layout: "auto" // Removed maxWidth
+  layout: "auto"
 });
 
 display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;">
@@ -250,7 +250,7 @@ display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;"
     ${dailyTable}
   </div>
 
-<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 10px; width: 100%;">
+<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 5px; width: 100%;">
   <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
     ${resultsTable}
   </div>
