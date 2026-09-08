@@ -370,7 +370,7 @@ const dailyData = d3.flatRollup(
 const dailyTable = Inputs.table(dailyData, {
   header: { Tanggal: "Tanggal", Sumber: "Sumber Media", Jumlah: "Jumlah Artikel" },
   rows: 15,
-  maxWidth: "200%",
+  maxWidth: "100%",
   layout: "auto"
 });
 
