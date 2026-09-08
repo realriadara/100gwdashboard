@@ -245,12 +245,8 @@ const resultsTable = Inputs.table(finalFilteredData, {
   layout: "auto"
 });
 
-display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;">
-  <div style="flex-grow: 1; min-width: 0;">
-    ${resultsTable}
-  </div>
-
-<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 5px; width: 100%;">
+display(htl.html`
+<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 16px; width: 100%;">
   <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
     ${resultsTable}
   </div>
