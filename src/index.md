@@ -81,7 +81,7 @@ const filterState = view((function(prev) {
   const targets = ["Judul", "Konten", "Judul + Konten"];
   
   // Build the layout skeleton
-container.style.maxWidth = "100%"; 
+container.style.maxWidth = "150%"; 
 container.style.boxSizing = "border-box";
 
 container.innerHTML = `
