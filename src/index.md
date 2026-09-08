@@ -247,7 +247,7 @@ const resultsTable = Inputs.table(finalFilteredData, {
 
 display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;">
   <div style="flex-grow: 1; min-width: 0;">
-    ${dailyTable}
+    ${resultsTable}
   </div>
 
 <div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 5px; width: 100%;">
