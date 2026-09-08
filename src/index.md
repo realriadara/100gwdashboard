@@ -354,35 +354,47 @@ display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;"
 ```
 
 ```js
-// TABEL 1: FREKUENSI HARIAN DENGAN RIGHT-SIDE BUTTONS
+// TABEL 1
 const dailyData = d3.flatRollup(
   finalFilteredData,
-  v => v.length,
-  d => {
+  (v) => v.length,
+  (d) => {
     const date = d.ARTICLE_PUBLISHDATE;
-    return date instanceof Date && !isNaN(date) ? d3.timeFormat("%Y-%m-%d")(date) : "Unknown";
+    return date instanceof Date && !isNaN(date) 
+      ? d3.timeFormat("%Y-%m-%d")(date) 
+      : "Unknown";
   },
-  d => d.MEDIA_OUTLET
+  (d) => d.MEDIA_OUTLET
 )
-.map(([Tanggal, Sumber, Jumlah]) => ({ Tanggal, Sumber, Jumlah }))
-.sort((a, b) => d3.descending(a.Tanggal, b.Tanggal) || d3.descending(a.Jumlah, b.Jumlah));
+  .map(([Tanggal, Sumber, Jumlah]) => ({ Tanggal, Sumber, Jumlah }))
+  .sort((a, b) => d3.descending(a.Tanggal, b.Tanggal) || d3.descending(a.Jumlah, b.Jumlah));
 
 const dailyTable = Inputs.table(dailyData, {
-  header: { Tanggal: "Tanggal", Sumber: "Sumber Media", Jumlah: "Jumlah Artikel" },
+  header: { 
+    Tanggal: "Tanggal", 
+    Sumber: "Sumber Media", 
+    Jumlah: "Jumlah Artikel" 
+  },
   rows: 15,
   maxWidth: "100%",
   layout: "auto"
 });
 
-display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;">
-  <div style="flex-grow: 1; min-width: 0;">
-    ${dailyTable}
+display(htl.html`
+  <div style="display: flex; align-items: flex-start; gap: 16px;">
+    <div style="flex-grow: 1; min-width: 0;">
+      ${dailyTable}
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;">
+      ${Inputs.button("Download CSV", { 
+        reduce: () => exportCSV(dailyData, "Data_Harian") 
+      })}
+      ${Inputs.button("Download JSON", { 
+        reduce: () => exportJSON(dailyData, "Data_Harian") 
+      })}
+    </div>
   </div>
-  <div style="display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;">
-    ${Inputs.button("Download CSV", { reduce: () => exportCSV(dailyData, "Data_Harian") })}
-    ${Inputs.button("Download JSON", { reduce: () => exportJSON(dailyData, "Data_Harian") })}
-  </div>
-</div>`);
+`);
 ```
 
 ```js
