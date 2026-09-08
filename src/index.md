@@ -87,7 +87,7 @@ const filterState = view((function(prev) {
       <div id="tags-container" style="display: flex; flex-wrap: wrap; gap: 10px 16px;"></div>
     </div>
     <div style="display: flex;">
-      <div style="width: 160px; flex-shrink: 0; font-weight: 500; padding-top: 2px;">Pencarian entitas pada:</div>
+      <div style="width: 120px; flex-shrink: 0; font-weight: 500; padding-top: 2px;">Pencarian entitas pada:</div>
       <div id="targets-container" style="display: flex; flex-wrap: wrap; gap: 10px 16px;"></div>
     </div>
   `;
