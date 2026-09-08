@@ -232,13 +232,14 @@ const resultsTable = Inputs.table(finalFilteredData, {
     ARTICLE_LINK: (link) => htl.html`<a href="${link}" target="_blank" rel="noopener noreferrer">Read Article</a>`
   },
   rows: rowCount, 
-  maxWidth: "200%",
-  layout: "auto"
+  width: "100%",           // ADDED: Force the table to expand
+  layout: "auto"           // Removed maxWidth: "200%" as it causes flexbox issues
 });
 
 // Display side-by-side
-display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;">
-  <div style="flex-grow: 1; min-width: 0;">
+// ADDED: width: 100% to the parent flex container
+display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px; width: 100%;">
+  <div style="flex-grow: 1; min-width: 0; width: 100%;"> 
     ${resultsTable}
   </div>
   <div style="display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;">
