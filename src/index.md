@@ -232,7 +232,7 @@ const resultsTable = Inputs.table(finalFilteredData, {
     ARTICLE_LINK: (link) => htl.html`<a href="${link}" target="_blank" rel="noopener noreferrer">Read Article</a>`
   },
   rows: rowCount, 
-  maxWidth: "100%",
+  maxWidth: "200%",
   layout: "auto"
 });
 
@@ -356,7 +356,7 @@ const dailyData = d3.flatRollup(
 const dailyTable = Inputs.table(dailyData, {
   header: { Tanggal: "Tanggal", Sumber: "Sumber Media", Jumlah: "Jumlah Artikel" },
   rows: 15,
-  maxWidth: "100%",
+  maxWidth: "200%",
   layout: "auto"
 });
 
