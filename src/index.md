@@ -246,15 +246,14 @@ const resultsTable = Inputs.table(finalFilteredData, {
     ARTICLE_LINK: "Tautan"
   },
   format: {
-    // Force the title text to wrap and limit its width
-    ARTICLE_TITLE: (title) => htl.html`<div style="white-space: normal; min-width: 300px; max-width: 500px; line-height: 1.4;">${title}</div>`,
-    ARTICLE_LINK: (link) => htl.html`<a href="${link}" target="_blank" rel="noopener noreferrer">Read Article</a>`
+    // Force the title text to wrap and limit its width with safe fallbacks
+    ARTICLE_TITLE: (title) => html`<div style="white-space: normal; min-width: 300px; max-width: 500px; line-height: 1.4;">${title || "Tanpa Judul"}</div>`,
+    ARTICLE_LINK: (link) => html`<a href="${link || "#"}" target="_blank" rel="noopener noreferrer">Read Article</a>`
   },
-  rows: rowCount,
-  layout: "auto"
+  rows: rowCount || 20
 });
 
-display(htl.html`
+display(html`
 <div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 16px; width: 100%;">
   <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
     ${resultsTable}
