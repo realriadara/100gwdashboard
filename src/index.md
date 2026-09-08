@@ -1,9 +1,13 @@
 ---
 title: 100 GW Media Tracking Dashboard
 toc: false
-style:
-  max-width: 1600px
 ---
+
+<style>
+  main {
+    max-width: 1400px !important;
+  }
+</style>
 
 ```js
 // BLOCK 1: FETCH THE DATA
