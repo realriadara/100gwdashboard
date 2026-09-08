@@ -61,6 +61,7 @@ function exportSVG(plotNode, filename) {
 
 ```js
 // BLOCK 2: SEARCH + TAG FILTERS
+
 const searchResults = view(Inputs.search(data, {
   placeholder: "Cari kata kunci di judul...",
   columns: ["ARTICLE_TITLE"],
@@ -74,6 +75,7 @@ const { selectedTag, filterTarget } = filterState;
 
 ```js
 // COMBINED FILTER INPUTS WITH DYNAMIC COUNTS
+
 const filterState = view((function(prev) {
   // Preserve previous selections so they don't reset when using the search bar
   let currentTag = prev ? prev.value.selectedTag : "Semua";
@@ -91,6 +93,7 @@ const filterState = view((function(prev) {
   const targets = ["Judul", "Konten", "Judul + Konten"];
   
   // Build the layout skeleton
+
 container.style.maxWidth = "100%"; 
 container.style.boxSizing = "border-box";
 
@@ -130,6 +133,7 @@ container.innerHTML = `
   }
   
   // Render and attach events
+
   function render() {
     // 1. Render Entity Tags
     tagsContainer.innerHTML = "";
@@ -196,6 +200,7 @@ container.innerHTML = `
 
 ```js
 // BLOCK 3: COMBINE FILTERS
+
 const finalFilteredData = selectedTag === "Semua"
   ? searchResults
   : searchResults.filter(d => {
@@ -221,6 +226,7 @@ const finalFilteredData = selectedTag === "Semua"
 
 ```js
 // NEW: Slider to adjust the number of rows displayed in the table
+
 const rowCount = view(Inputs.range([5, 50], {
   label: "Jumlah baris per halaman",
   step: 5,
@@ -230,6 +236,7 @@ const rowCount = view(Inputs.range([5, 50], {
 
 ```js
 // BLOCK 4: RESULTS TABLE WITH RIGHT-SIDE BUTTONS
+
 const resultsTable = Inputs.table(finalFilteredData, {
   columns: ["ARTICLE_TITLE", "MEDIA_OUTLET", "ARTICLE_PUBLISHDATE", "ARTICLE_LINK"],
   header: {
@@ -247,7 +254,6 @@ const resultsTable = Inputs.table(finalFilteredData, {
   layout: "auto"
 });
 
-// Render the table and the buttons to the screen
 display(htl.html`
 <div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 16px; width: 100%;">
   <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
@@ -354,6 +360,7 @@ display(htl.html`<div style="display: flex; align-items: flex-start; gap: 16px;"
 
 ```js
 // TABEL 1
+
 const dailyData = d3.flatRollup(
   finalFilteredData,
   (v) => v.length,
