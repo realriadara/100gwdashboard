@@ -253,17 +253,7 @@ if (innerTable) {
   innerTable.style.width = "100%";
 }
 
-// Display side-by-side with injected CSS to prevent text truncation
-display(htl.html`
-<style>
-  /* Force the first column (Judul) to wrap text instead of truncating */
-  .wide-table-container table td:nth-child(1) {
-    min-width: 400px;
-    white-space: normal !important; 
-  }
-</style>
-
-<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 20px; width: 100%;">
+<div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 10px; width: 100%;">
   <div style="flex: 1 1 auto; min-width: 0; width: 100%;">
     ${resultsTable}
   </div>
