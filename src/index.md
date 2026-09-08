@@ -81,16 +81,24 @@ const filterState = view((function(prev) {
   const targets = ["Judul", "Konten", "Judul + Konten"];
   
   // Build the layout skeleton
-  container.innerHTML = `
-    <div style="display: flex;">
-      <div style="width: 160px; flex-shrink: 0; font-weight: 500; padding-top: 2px;">Filter berdasarkan entitas</div>
-      <div id="tags-container" style="display: flex; flex-wrap: wrap; gap: 10px 16px;"></div>
+container.style.maxWidth = "100%"; 
+container.style.boxSizing = "border-box";
+
+container.innerHTML = `
+  <div style="display: flex; gap: 12px; align-items: flex-start;">
+    <div style="width: 150px; flex-shrink: 0; font-weight: 500; padding-top: 2px;">
+      Filter berdasarkan entitas
     </div>
-    <div style="display: flex;">
-      <div style="width: 120px; flex-shrink: 0; font-weight: 500; padding-top: 2px;">Pencarian entitas pada:</div>
-      <div id="targets-container" style="display: flex; flex-wrap: wrap; gap: 10px 16px;"></div>
+    <div id="tags-container" style="display: flex; flex-wrap: wrap; gap: 10px 16px; flex: 1; min-width: 0;"></div>
+  </div>
+  
+  <div style="display: flex; gap: 12px; align-items: flex-start;">
+    <div style="width: 150px; flex-shrink: 0; font-weight: 500; padding-top: 2px;">
+      Pencarian entitas pada:
     </div>
-  `;
+    <div id="targets-container" style="display: flex; flex-wrap: wrap; gap: 10px 16px; flex: 1; min-width: 0;"></div>
+  </div>
+`;
   
   const tagsContainer = container.querySelector("#tags-container");
   const targetsContainer = container.querySelector("#targets-container");
