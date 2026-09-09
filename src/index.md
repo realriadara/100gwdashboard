@@ -264,14 +264,19 @@ display(html`
   /* Make the headers resizable */
   .wide-table-container th {
     resize: horizontal;
-    overflow: auto; /* Required for the resize handle to appear */
-    min-width: 50px; /* Prevents columns from collapsing completely */
+    overflow: auto;
+    min-width: 50px;
+  }
+
+  /* Completely remove the empty first column (index column) */
+  .wide-table-container tr th:first-child,
+  .wide-table-container tr td:first-child {
+    display: none;
   }
 </style>
 
 <div class="wide-table-container" style="display: flex; align-items: flex-start; gap: 8px; width: 100%; max-width: 100%;">
   
-  <!-- Added overflow-x: auto to handle internal scrolling if columns are resized too wide -->
   <div style="flex: 1 1 auto; min-width: 0; width: 100%; overflow-x: auto;">
     ${resultsTable}
   </div>
